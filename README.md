@@ -9,7 +9,7 @@ Project Structure:
 
 Added **Kafka** for asynchronous communication.
 
-Created 4 Kafka topics:
+Created 3 Kafka topics:
 
 - "notification-send": Produced by Notification Service and it sent message via whatsapp.
 - "client-created": Produced by Registry Service and consumed by Notification Service for caching purpose
