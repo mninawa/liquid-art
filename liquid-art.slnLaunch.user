@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "LaunchAPIs",
+    "Projects": [
+      {
+        "Path": "Notifications.Api\\Notifications.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "Registry.Api\\Registry.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]

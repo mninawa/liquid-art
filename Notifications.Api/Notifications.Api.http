@@ -1,0 +1,6 @@
+@Notification.Api_HostAddress = http://localhost:5223
+
+GET {{Notification.Api_HostAddress}}/Notification/GetAllNotifications/
+Accept: application/json
+
+###
