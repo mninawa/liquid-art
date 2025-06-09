@@ -1,0 +1,13 @@
+/Users/paige/cooper/unipr_mop/Liquid-Art/Template/Template.Shared/bin/Debug/net8.0/Template.Shared.deps.json
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/bin/Debug/net8.0/Template.Shared.dll
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/bin/Debug/net8.0/Template.Shared.pdb
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.AssemblyInfoInputs.cache
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.AssemblyInfo.cs
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.csproj.CoreCompileInputs.cache
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.sourcelink.json
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.dll
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/refint/Template.Shared.dll
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.pdb
+/Users/paige/cooper/unipr_mop/Liquid-Art/Template/Template.Shared/obj/Debug/net8.0/ref/Template.Shared.dll
+/Users/paige/cooper/unipr_mop/liquid-art/Template/Template.Shared/obj/Debug/net8.0/Template.Shared.csproj.AssemblyReference.cache
