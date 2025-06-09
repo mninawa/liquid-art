@@ -47,7 +47,7 @@ namespace Template.Api.Controllers
         
       
         [HttpDelete(Name = "Delete")]
-        public async Task<ActionResult> DeleteOrder(string id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult> Delete(string id, CancellationToken cancellationToken = default)
         {
             var deleted = await _business.Delete(id, cancellationToken);
 
@@ -62,7 +62,7 @@ namespace Template.Api.Controllers
         }
         
         [HttpPut(Name = "UpdateTemplate")]
-        public async Task<ActionResult> UpdatePayment(string id, TemplateUpdateDto updateDto, CancellationToken cancellationToken = default)
+        public async Task<ActionResult> UpdateTemplate(string id, TemplateUpdateDto updateDto, CancellationToken cancellationToken = default)
         {
             var result = await _business.UpdateTemplate(id, updateDto, cancellationToken);
             
