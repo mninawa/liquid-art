@@ -22,7 +22,8 @@ namespace Template.Business
 
         public async Task CreateTemplate(TemplateInsertDto insertDto,CancellationToken cancellationToken = default)
         {
-            var template = _mapper.Map<Templates>(insertDto);
+            var template = _mapper.Map<Templates>(insertDto.Template);
+            
             await _repository.CreateTemplate(template, cancellationToken);
             
             var outboxMessage =
@@ -64,7 +65,7 @@ namespace Template.Business
             // await _repository.UpdateOutboxMessage(template, cancellationToken);
 
             _logger.LogInformation(
-                $"Template with id {id} updated successfully with status {template.Status.ToString()}");
+                $"Template with id {id} updated successfully with status {template.IsPush.ToString()}");
 
 
             return true;

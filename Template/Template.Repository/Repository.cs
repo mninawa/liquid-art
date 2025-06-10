@@ -50,7 +50,7 @@ namespace Template.Repository
             
             var filter = Builders<Templates>.Filter
                 .Eq(f => f.Id, updated.Id);
-            var update = Builders<Templates>.Update.Set(x => x.Status, updated.Status);
+            var update = Builders<Templates>.Update.Set(x => x.IsPush, updated.IsPush);
             
             await templates.UpdateOneAsync(filter, update);
             return true;

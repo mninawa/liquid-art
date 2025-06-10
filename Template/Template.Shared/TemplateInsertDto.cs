@@ -12,7 +12,7 @@ namespace Template.Shared
     public class Language
     {
         [JsonProperty("langCode")]
-        public string LangCode { get; set; }
+        public string LanguageCode { get; set; }
 
         [JsonProperty("heading")]
         public string Heading { get; set; }
@@ -99,8 +99,8 @@ namespace Template.Shared
     public class Template
     {
         
-        [JsonProperty("Id")]
-        public string Id { get; set; }
+        // [JsonProperty("Id")]
+        // public string Id { get; set; }
         
         [JsonProperty("templateCode")]
         public string TemplateCode { get; set; }
@@ -123,8 +123,8 @@ namespace Template.Shared
         [JsonProperty("nobficationType")]
         public string NobficationType { get; set; }
 
-        [JsonProperty("meta")]
-        public List<Metum> Meta { get; set; }
+        [JsonProperty("metum")]
+         public List<Metum> Metum { get; set; }
 
         [JsonProperty("tokens")]
         public List<Token> Tokens { get; set; }
@@ -150,6 +150,5 @@ namespace Template.Shared
         [JsonProperty("type")]
         public string Type { get; set; }
     }
-
-
+    
 }

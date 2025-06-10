@@ -357,3 +357,22 @@ MigrationBackup/
 .ionide/
 
 .angular
+Registry.Business/obj/
+
+Template/Template.Api/bin/
+
+Template/Template.Api/obj/
+
+Template/Template.Business/bin/
+
+Template/Template.Business/obj/
+
+Template/Template.ClientHttp/obj/
+
+Template/Template.Repository/bin/
+
+Template/Template.Repository/obj/
+
+Template/Template.Shared/bin/
+
+Template/Template.Shared/obj/
