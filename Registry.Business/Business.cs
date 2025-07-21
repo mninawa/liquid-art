@@ -12,12 +12,59 @@ namespace Registry.Business
         private readonly IRepository _repository;
         private readonly ILogger<Business> _logger;
         private readonly IMapper _mapper;
-
         public Business(IRepository repository, ILogger<Business> logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+        }
+        
+        public async Task CreateCity(CityDto cityDto, CancellationToken cancellationToken = default)
+        {
+            var city = _mapper.Map<City>(cityDto);
+            await _repository.CreateCity(city, cancellationToken);
+            _logger.LogInformation("city created successfully.");
+        }
+
+        public async Task CreateMAnyCity(List<CityDto> clientInsertDto, CancellationToken cancellationToken = default)
+        {
+            var city = _mapper.Map<List<City>>(clientInsertDto);
+            await _repository.CreateManyCity(city, cancellationToken);
+            _logger.LogInformation("city created successfully.");
+        }
+        
+        public async Task<List<CityDto>> GetAllCities(int numberOfRecord, CancellationToken cancellationToken = default)
+        {
+            var cities = await _repository.GetAllCities(numberOfRecord,cancellationToken);
+            if (cities.Any() == false) 
+                return new List<CityDto>();
+            var list = _mapper.Map<List<CityDto>>(cities);
+            return list;
+        }
+
+        public async Task<List<CouponDto>> GetAllCoupons(int numberOfRecord, CancellationToken cancellationToken = default)
+        {
+            var cities = await _repository.GetAllCoupons(numberOfRecord,cancellationToken);
+            if (cities.Any() == false) 
+                return new List<CouponDto>();
+            var list = _mapper.Map<List<CouponDto>>(cities);
+            return list;
+        }
+        public async Task<List<BusOperatorDto>> GetAllOperators(int numberOfRecord, CancellationToken cancellationToken = default)
+        {
+            var entity = await _repository.GetAllOperators(numberOfRecord,cancellationToken);
+            if (entity.Any() == false) 
+                return new List<BusOperatorDto>();
+            var list = _mapper.Map<List<BusOperatorDto>>(entity);
+            return list;
+        }
+        public async Task<List<FacilityDto>> GetAllFacilities(int numberOfRecord, CancellationToken cancellationToken = default)
+        {
+            var entity = await _repository.GetAllFacilities(numberOfRecord,cancellationToken);
+            if (entity.Any() == false) 
+                return new List<FacilityDto>();
+            var list = _mapper.Map<List<FacilityDto>>(entity);
+            return list;
         }
 
         public async Task CreateClient(ClientInsertDto clientInsertDto,CancellationToken cancellationToken = default)
@@ -53,8 +100,6 @@ namespace Registry.Business
         public async Task CreateDevice(DeviceInsertDto deviceInsertDto, CancellationToken cancellationToken = default)
         {
             var device = _mapper.Map<Device>(deviceInsertDto);
-
-            // I open a transaction here because I need consistency between the client and the outbox message
             
                 await _repository.CreateDevice(device, cancellationToken);
                 // TransactionalOutbox pattern implementation for Kafka
@@ -82,7 +127,7 @@ namespace Registry.Business
             var devicesReadDto = _mapper.Map<List<DeviceReadDto>>(devices);
             return devicesReadDto;
         }
-
+        
         private async Task<OutboxMessage> GetRegistryCreatedOutboxMessage(string registryId, string topic, CancellationToken cancellationToken)
         {
             var outboxMessage = new OutboxMessage

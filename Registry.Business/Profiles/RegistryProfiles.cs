@@ -21,6 +21,10 @@ namespace Registry.Business.Profiles
             CreateMap<Client, ClientReadDto>().ReverseMap();
             CreateMap<DeviceInsertDto, Device>().ReverseMap();
             CreateMap<Device, DeviceReadDto>().ReverseMap();
+            
+            CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<List<City>, List<CityDto> >().ReverseMap();
+            CreateMap<Coupon, CouponDto>().ReverseMap();
         }
     }
 }

@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Shared", "Template
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Repository", "Template\Template.Repository\Template.Repository.csproj", "{3BD5C515-5317-497E-ABD7-8D1A9A9D170D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry.DbMigrator", "Registry.DbMigrator\Registry.DbMigrator.csproj", "{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,10 @@ Global
 		{3BD5C515-5317-497E-ABD7-8D1A9A9D170D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BD5C515-5317-497E-ABD7-8D1A9A9D170D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BD5C515-5317-497E-ABD7-8D1A9A9D170D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,5 +136,6 @@ Global
 		{E5375875-1538-48F0-A78B-B74636F043D5} = {59ACEA99-126A-41E4-AD66-CCA191182E28}
 		{8012C168-DE1C-4A36-81F7-1E04BA07BA74} = {59ACEA99-126A-41E4-AD66-CCA191182E28}
 		{3BD5C515-5317-497E-ABD7-8D1A9A9D170D} = {59ACEA99-126A-41E4-AD66-CCA191182E28}
+		{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE} = {F874FB0B-60AE-4940-A1AD-C06E02D8F6AC}
 	EndGlobalSection
 EndGlobal

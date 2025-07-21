@@ -10,5 +10,13 @@ namespace Registry.Business.Abstraction
         Task CreateDevice(DeviceInsertDto deviceInsertDto, CancellationToken cancellationToken = default);
         Task<DeviceReadDto?> GetDeviceById(string id, CancellationToken cancellationToken = default);
         Task<List<DeviceReadDto>> GetAllDevices(int numberOfRecord, CancellationToken cancellationToken = default);
+        
+        
+        Task CreateCity(CityDto clientInsertDto, CancellationToken cancellationToken = default);
+        Task CreateMAnyCity(List<CityDto> clientInsertDto, CancellationToken cancellationToken = default);
+        Task<List<CityDto>> GetAllCities(int numberOfRecord,CancellationToken cancellationToken = default);
+        Task<List<CouponDto>> GetAllCoupons(int numberOfRecord,CancellationToken cancellationToken = default);
+        Task<List<BusOperatorDto>> GetAllOperators(int numberOfRecord,CancellationToken cancellationToken = default);
+        Task<List<FacilityDto>> GetAllFacilities(int numberOfRecord,CancellationToken cancellationToken = default);
     }
 }

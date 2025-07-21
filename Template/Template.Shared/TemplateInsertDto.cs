@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Template.Shared
-{
+namespace Template.Shared;
   
     
     public class TemplateUpdateDto
@@ -151,4 +150,4 @@ namespace Template.Shared
         public string Type { get; set; }
     }
     
-}
+

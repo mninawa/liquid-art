@@ -19,6 +19,13 @@ namespace Registry.Repository.Abstraction
         Task CreateOutboxMessage(OutboxMessage outboxMessage, CancellationToken cancellationToken = default);
         Task UpdateOutboxMessage(OutboxMessage outboxMessage, CancellationToken cancellationToken = default);
         Task<List<OutboxMessage>> GetPendingOutboxMessages(CancellationToken cancellationToken = default);
+        
+        Task<List<City>> GetAllCities(int numberOfRecords,CancellationToken cancellationToken = default);
+        Task CreateCity(City city, CancellationToken cancellationToken = default);
+        Task CreateManyCity(List<City> city, CancellationToken cancellationToken = default);
+        Task<List<Coupon>> GetAllCoupons(int numberOfRecords,CancellationToken cancellationToken = default);
+        Task<List<BusOperator>> GetAllOperators(int numberOfRecords,CancellationToken cancellationToken = default);
+        Task<List<Facility>> GetAllFacilities(int numberOfRecords,CancellationToken cancellationToken = default);
     }
     
     public interface IMongoConnectionSetting
@@ -26,6 +33,10 @@ namespace Registry.Repository.Abstraction
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
         public string ClientCollectionName { get; set; }
+        public string FacilityCollectionName { get; set; }
+        public string BusOperaterCollectionName { get; set; }
+        public string CityCollectionName { get; set; }
+        public string CouponCollectionName { get; set; }
         public string DeviceCollectionName { get; set; }
         public string OutboxCollectionName { get; set; }
     }
@@ -33,6 +44,10 @@ namespace Registry.Repository.Abstraction
     {
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
+        public string FacilityCollectionName { get; set; }
+        public string BusOperaterCollectionName { get; set; }
+        public string CouponCollectionName { get; set; }
+        public string CityCollectionName { get; set; }
         public string ClientCollectionName { get; set; }
         public string DeviceCollectionName { get; set; }
         public string OutboxCollectionName { get; set; }

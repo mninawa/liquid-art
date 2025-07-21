@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="4.4.0" />
+    <PackageReference Include="Volo.Abp.Data" Version="9.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.7" />
+<!--    <ProjectReference Include="..\Meowv.Blog.Application\Meowv.Blog.Application.csproj" />-->
+<!--    <ProjectReference Include="..\Meowv.Blog.MongoDb\Meowv.Blog.MongoDb.csproj" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include=".\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Registry.Business\Registry.Business.csproj" />
+    <ProjectReference Include="..\Registry.Shared\Registry.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

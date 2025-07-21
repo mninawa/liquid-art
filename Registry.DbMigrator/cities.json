@@ -1,0 +1,64 @@
+{
+  "RECORDS": [
+    {
+      "id": "605c72a7f1a9a50f1c7e0f1a",
+      "title": "Eswatini,Manzini",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f1b",
+      "title": "Eswatini,Matsapha",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f1c",
+      "title": "Eswatini,Malkerns",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f1d",
+      "title": "Eswatini,Ezulwini",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f1e",
+      "title": "Eswatini,Mbabane",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f1f",
+      "title": "Eswatini,Ngwenya",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f20",
+      "title": "Joburg,Sandton",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f21",
+      "title": "Joburg,OR Tambo",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f22",
+      "title": "Durba,City",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f23",
+      "title": "Durban,Umhlanga",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f24",
+      "title": "Durban,King Shaka",
+      "active": true
+    },
+    {
+      "id": "605c72a7f1a9a50f1c7e0f25",
+      "title": "Durban,Ballito",
+      "active": true
+    }
+  ]
+}

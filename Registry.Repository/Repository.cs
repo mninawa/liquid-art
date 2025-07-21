@@ -10,6 +10,10 @@ namespace Registry.Repository
     {
         
         private readonly ILogger<Repository> logger;
+        private readonly IMongoCollection<Facility> facility;
+        private readonly IMongoCollection<BusOperator> busOperators;
+        private readonly IMongoCollection<City> cityCollection;
+        private readonly IMongoCollection<Coupon> couponCollection;
         private readonly IMongoCollection<Client> clients;
         private readonly IMongoCollection<Device> devices;
         private readonly IMongoCollection<OutboxMessage> outboxMessages;
@@ -20,7 +24,12 @@ namespace Registry.Repository
             clients = mongoDatabase.GetCollection<Client>(mongoConnectionSetting.ClientCollectionName);
             devices = mongoDatabase.GetCollection<Device>(mongoConnectionSetting.DeviceCollectionName);
             outboxMessages = mongoDatabase.GetCollection<OutboxMessage>(mongoConnectionSetting.OutboxCollectionName);
+            
             this.logger = logger;
+            this.cityCollection = mongoDatabase.GetCollection<City>(mongoConnectionSetting.CityCollectionName);
+            this.couponCollection = mongoDatabase.GetCollection<Coupon>(mongoConnectionSetting.CouponCollectionName);
+            this.busOperators = mongoDatabase.GetCollection<BusOperator>(mongoConnectionSetting.BusOperaterCollectionName);
+            this.facility = mongoDatabase.GetCollection<Facility>(mongoConnectionSetting.FacilityCollectionName);
         }
 
         // Clients
@@ -36,7 +45,7 @@ namespace Registry.Repository
 
         public async Task<List<Client>> GetAllClients(int numberOfRecords,CancellationToken cancellationToken = default)
         {
-            return await clients.Find(s => true).Limit(numberOfRecords).ToListAsync();
+            return await clients.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
         }
 
         // Devices
@@ -53,7 +62,7 @@ namespace Registry.Repository
 
         public async Task<List<Device>> GetAllDevices(int numberOfRecords,CancellationToken cancellationToken = default)
         {
-            return await devices.Find(s => true).Limit(numberOfRecords).ToListAsync();
+            return await devices.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
         }
 
         // Outbox Messages
@@ -73,7 +82,33 @@ namespace Registry.Repository
         
         public async Task<List<OutboxMessage>> GetPendingOutboxMessages(CancellationToken cancellationToken = default)
         {
-            return await outboxMessages.FindSync(m => m.Processed == false).ToListAsync();
+            return await outboxMessages.FindSync(m => m.Processed == false).ToListAsync(cancellationToken: cancellationToken);
+        }
+        public async Task<List<City>> GetAllCities(int numberOfRecords, CancellationToken cancellationToken = default)
+        {
+            return await cityCollection.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
+        }
+        public async Task CreateCity(City city, CancellationToken cancellationToken = default)
+        {
+            await cityCollection.InsertOneAsync(city, cancellationToken);
+        }
+
+        public async Task CreateManyCity(List<City> city, CancellationToken cancellationToken = default)
+        {
+            await cityCollection.InsertManyAsync(city, cancellationToken: cancellationToken);
+        }
+
+        public async Task<List<Coupon>> GetAllCoupons(int numberOfRecords, CancellationToken cancellationToken = default)
+        {
+            return await couponCollection.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
+        }
+        public async Task<List<BusOperator>> GetAllOperators(int numberOfRecords, CancellationToken cancellationToken = default)
+        {
+            return await busOperators.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
+        }
+        public async Task<List<Facility>> GetAllFacilities(int numberOfRecords, CancellationToken cancellationToken = default)
+        {
+            return await facility.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
         }
     }
 }

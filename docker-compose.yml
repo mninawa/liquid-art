@@ -1,15 +1,14 @@
 services:
-  mssql-server:
-    image: "mcr.microsoft.com/mssql/server:2019-latest"
-    container_name: mssql-server
-    environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: Developer
-      MSSQL_SA_PASSWORD: "msProj2025"
-    ports:
-      - "2433:1433"
-    volumes:
-      - mssql-data:/var/opt/mssql
+  postgres:
+   image: postgres:latest
+   container_name: postgres
+   restart: unless-stopped
+   ports:
+     - 5432:5432
+   environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=14142135
+     - POSTGRES_DB=rates
 
   adminer:
     image: adminer:4.8.1

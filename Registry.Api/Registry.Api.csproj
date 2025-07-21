@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.7" />
     <PackageReference Include="KafkaFlow" Version="3.0.10" />
     <PackageReference Include="KafkaFlow.LogHandler.Console" Version="3.0.10" />
     <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" Version="3.0.10" />
