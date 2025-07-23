@@ -1,58 +1,57 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+﻿using System;
 using System.Threading.Tasks;
-using Registry.Business.Abstraction;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using CommandLine;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Registry.DbMigrator.Commands;
+using Registry.DbMigrator.Configurations;
 using Registry.Business.Seeder;
-using Registry.Repository.Abstraction;
 
 namespace Registry.DbMigrator
 {
-    
+   
     public class Program
     {
         
         public static async Task Main(string[] args)
         {
-            //var test = new CitySeeder();
-             await CreateHostBuilder(args).Build().RunAsync();
-        }
+            Console.WriteLine("Starting application...");
 
-        private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureLogging((context, logging) => logging.ClearProviders())
-                .ConfigureServices((hostContext, services) =>
-                {
-                    //services.AddHostedService<CitySeeder>();
-                    services.AddScoped<IRepository, Repository.Repository>();
-                    services.AddScoped<IBusiness, Business.Business>();
-                    services.AddHostedService<DbMigratorHostedService>();
-                });
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            var builder = new ContainerBuilder();
+            var startup = new Startup(configuration);
+            startup.ConfigureServices(builder);
+
+            // Logging setup
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddLogging(configure => configure.AddConsole());
+            builder.Populate(serviceCollection);
+
+            var container = builder.Build();
+            await using (var scope = container.BeginLifetimeScope())
+            {
+                var seeder = scope.Resolve<CitySeeder>();
+                await seeder.SeedAsync();
+            }
+            // TODO: Parse command-line arguments
+            // Parser.Default.ParseArguments<Options>(args)
+            //     .WithParsed<Options>(async options =>
+            //     {
+            //         using (var scope = container.BeginLifetimeScope())
+            //         {
+            //             var seeder = scope.Resolve<CitySeeder>();
+            //             await seeder.SeedAsync();
+            //         }
+            //     });
+
+            Console.WriteLine("Application finished.");
+        }
     }
-    // public class Program
-    // {
-    //     public static async Task Main(string[] args)
-    //     {
-    //         await CreateHostBuilder(args).Build().RunAsync();
-    //     }
-    //
-    //     internal static IHostBuilder CreateHostBuilder(string[] args)
-    //     {
-    //         return Host.CreateDefaultBuilder(args).ConfigureLogging(ConfigureLogging) .ConfigureServices(ConfigureServices);
-    //     }
-    //
-    //     private static void ConfigureLogging(HostBuilderContext context, ILoggingBuilder logging)
-    //     {
-    //         logging.ClearProviders();
-    //     }
-    //
-    //     private static void ConfigureServices(HostBuilderContext hostContext, IServiceCollection services)
-    //     {
-    //         services.AddHostedService<DbMigratorHostedService>();
-    //         services.AddScoped<Repository.Abstraction.IRepository, Repository.Repository>();
-    //         services.AddScoped<IBusiness, Business.Business>();
-    //         //services.AddScoped<CitySeeder>();
-    //     }
-    //     
-    // }
+  
 }

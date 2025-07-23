@@ -71,9 +71,13 @@ namespace Registry.Business
         {
             var client = _mapper.Map<Client>(clientInsertDto);
             await _repository.CreateClient(client, cancellationToken);
-            var outboxMessage =
-                await GetRegistryCreatedOutboxMessage(client.Id, "client-created", cancellationToken);
-            await _repository.CreateOutboxMessage(outboxMessage, cancellationToken);
+            if (client.Id != null)
+            {
+                var outboxMessage =
+                    await GetRegistryCreatedOutboxMessage(client.Id, "client-created", cancellationToken);
+                await _repository.CreateOutboxMessage(outboxMessage, cancellationToken);
+            }
+
             _logger.LogInformation("client created successfully.");
 
         }
@@ -103,8 +107,11 @@ namespace Registry.Business
             
                 await _repository.CreateDevice(device, cancellationToken);
                 // TransactionalOutbox pattern implementation for Kafka
-                var outboxMessage = await GetRegistryCreatedOutboxMessage(device.Id, "device-created", cancellationToken);
-                await _repository.CreateOutboxMessage(outboxMessage, cancellationToken);
+                if (device.Id != null)
+                {
+                    var outboxMessage = await GetRegistryCreatedOutboxMessage(device.Id, "device-created", cancellationToken);
+                    await _repository.CreateOutboxMessage(outboxMessage, cancellationToken);
+                }
 
                 _logger.LogInformation("Device created successfully.");
             
@@ -122,7 +129,9 @@ namespace Registry.Business
         public async Task<List<DeviceReadDto>> GetAllDevices(int numberOfRecord,CancellationToken cancellationToken = default)
         {
             var devices = await _repository.GetAllDevices( numberOfRecord,cancellationToken);
-            if (devices == null || devices.Any() == false) return new List<DeviceReadDto>();
+            
+            if (devices.Any() == false)
+                return new List<DeviceReadDto>();
 
             var devicesReadDto = _mapper.Map<List<DeviceReadDto>>(devices);
             return devicesReadDto;

@@ -7,10 +7,18 @@ namespace Registry.Repository.Model;
 public class Facility
 {
     [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
-    [IgnoreDataMember]
-    public string? Id { get; init; }
-    public string Title { get; set; } = string.Empty;
-    public string Img { get; set; } = string.Empty;
+    [BsonRepresentation(BsonType.Int32)]
+    public int Id { get; set; }
+
+    [BsonRequired]
+    [BsonElement("title")]
+    public string Title { get; set; }
+
+    [BsonRequired]
+    [BsonElement("img")]
+    public string Img { get; set; }
+
+    [BsonRequired]
+    [BsonElement("status")]
     public int Status { get; set; }
 }

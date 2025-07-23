@@ -28,7 +28,7 @@ namespace Registry.Repository
             this.logger = logger;
             this.cityCollection = mongoDatabase.GetCollection<City>(mongoConnectionSetting.CityCollectionName);
             this.couponCollection = mongoDatabase.GetCollection<Coupon>(mongoConnectionSetting.CouponCollectionName);
-            this.busOperators = mongoDatabase.GetCollection<BusOperator>(mongoConnectionSetting.BusOperaterCollectionName);
+            this.busOperators = mongoDatabase.GetCollection<BusOperator>(mongoConnectionSetting.BusOperatorCollectionName);
             this.facility = mongoDatabase.GetCollection<Facility>(mongoConnectionSetting.FacilityCollectionName);
         }
 
@@ -93,9 +93,28 @@ namespace Registry.Repository
             await cityCollection.InsertOneAsync(city, cancellationToken);
         }
 
-        public async Task CreateManyCity(List<City> city, CancellationToken cancellationToken = default)
+        public async Task CreateManyCity(List<City> cities, CancellationToken cancellationToken = default)
         {
-            await cityCollection.InsertManyAsync(city, cancellationToken: cancellationToken);
+            var bulkOps = cities.Select(city =>
+            {
+                var filter = Builders<City>.Filter.Eq(c => c.Id, city.Id);
+                var update = Builders<City>.Update
+                    .Set(c => c.Title, city.Title)
+                    .Set(c => c.Status, city.Status);
+                return new UpdateOneModel<City>(filter, update) { IsUpsert = true };
+            }).ToList();
+            
+            try
+            {
+                await cityCollection.BulkWriteAsync(bulkOps, cancellationToken: cancellationToken);
+            }
+            catch (MongoBulkWriteException<City> ex)
+            {
+                foreach (var writeError in ex.WriteErrors)
+                {
+                    logger.LogError($"Error: {writeError.Message}");
+                }
+            }
         }
 
         public async Task<List<Coupon>> GetAllCoupons(int numberOfRecords, CancellationToken cancellationToken = default)

@@ -9,7 +9,7 @@ namespace Notifications.Repository.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string messageId { get; set; }
-        public string ClientId { get; set; }
+        public string? ClientId { get; set; }
         public string Amount { get; set; }
         public string Balance { get; set; }
         public string? Mobile { get; set; }

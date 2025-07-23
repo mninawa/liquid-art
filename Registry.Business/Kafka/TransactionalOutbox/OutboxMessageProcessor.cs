@@ -41,10 +41,10 @@ namespace Registry.Business.Kafka.TransactionalOutbox
                         try
                         {
                             // Publish the message to the Kafka topic
-                            await kafkaProducer.ProduceAsync(message.Topic, message.Id.ToString(), message.Payload);
+                            await kafkaProducer.ProduceAsync(message.Topic, message.Id?.ToString(), message.Payload);
                             // Check the message as processed
                             message.Processed = true;
-                            await repository.UpdateOutboxMessage(message);
+                            await repository.UpdateOutboxMessage(message, cancellationToken);
                             _logger.LogInformation($"Processed outbox message with ID: {message.Id}");
                         }
                         catch (Exception ex)
