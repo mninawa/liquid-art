@@ -7,10 +7,4 @@ Project Structure:
 - **Repository**: Manages data access and interactions with the database.
 - **Shared**: Includes shared components, DTOs, and utilities.
 
-Added **Kafka** for asynchronous communication.
 
-Created 3 Kafka topics:
-
-- "notification-send": Produced by Notification Service and it sent message via whatsapp.
-- "client-created": Produced by Registry Service and consumed by Notification Service for caching purpose
-- "device-created": Produced by Registry Service.
