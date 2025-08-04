@@ -18,9 +18,11 @@ namespace Registry.Repository.Abstraction
         Task<List<City>> GetAllCities(int numberOfRecords,CancellationToken cancellationToken = default);
         Task CreateCity(City city, CancellationToken cancellationToken = default);
         Task CreateManyCity(List<City> city, CancellationToken cancellationToken = default);
+    
         Task<List<Coupon>> GetAllCoupons(int numberOfRecords,CancellationToken cancellationToken = default);
         Task<List<BusOperator>> GetAllOperators(int numberOfRecords,CancellationToken cancellationToken = default);
         Task<List<Facility>> GetAllFacilities(int numberOfRecords,CancellationToken cancellationToken = default);
+        Task CreateManyFacilities(List<Facility> facilities, CancellationToken cancellationToken = default);
     }
    
     public interface IMongoConnectionSetting

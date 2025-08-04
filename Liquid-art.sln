@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationService", "NotificationService", "{63962A89-2BC2-4E81-AA29-51456FC7FA5A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{694EF686-4796-4236-83BC-EECAA01BDACF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{694EF686-4796-4236-83BC-EECAA01BDACF}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
@@ -45,6 +45,40 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Repository", "Template\Template.Repository\Template.Repository.csproj", "{3BD5C515-5317-497E-ABD7-8D1A9A9D170D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registry.DbMigrator", "Registry.DbMigrator\Registry.DbMigrator.csproj", "{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8", "k8", "{8B54AC09-93CA-4065-ADA7-AD9C4AEF5793}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\k8-proposed\k8s\template.service.deployment.yaml = deployment\k8-proposed\k8s\template.service.deployment.yaml
+		deployment\k8-proposed\k8s\registry.service.deployment.yaml = deployment\k8-proposed\k8s\registry.service.deployment.yaml
+		deployment\k8-proposed\k8s\notification-service-api-deployment.yaml = deployment\k8-proposed\k8s\notification-service-api-deployment.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "helm-values", "helm-values", "{FD6CE9E1-C69D-4A59-8258-E0AB0166D10B}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\k8-proposed\k8s\helm-values\db-values.yaml = deployment\k8-proposed\k8s\helm-values\db-values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-namespace", "init-namespace", "{72EC3DFC-A5D1-4C7E-B66C-66E445776F61}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\k8-proposed\k8s\init-namespace\01-namespace.yaml = deployment\k8-proposed\k8s\init-namespace\01-namespace.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-services", "init-services", "{2DE12D81-2F41-49EC-9D25-97605A8695AA}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\k8-proposed\k8s\init-services\02-config-map.yaml = deployment\k8-proposed\k8s\init-services\02-config-map.yaml
+		deployment\k8-proposed\k8s\init-services\04-api-gateway-service.yaml = deployment\k8-proposed\k8s\init-services\04-api-gateway-service.yaml
+		deployment\k8-proposed\k8s\init-services\06-registry-service-api.yaml = deployment\k8-proposed\k8s\init-services\06-registry-service-api.yaml
+		deployment\k8-proposed\k8s\init-services\06-template-service-api.yaml = deployment\k8-proposed\k8s\init-services\06-template-service-api.yaml
+		deployment\k8-proposed\k8s\init-services\05-notification-service-api.yaml = deployment\k8-proposed\k8s\init-services\05-notification-service-api.yaml
+		deployment\k8-proposed\k8s\init-services\03-role.yaml = deployment\k8-proposed\k8s\init-services\03-role.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{B1BA9011-BA07-49E1-A3B3-2667CDEB0D64}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\k8-proposed\scripts\pushImages.sh = deployment\k8-proposed\scripts\pushImages.sh
+		deployment\k8-proposed\scripts\deployToKubernetes.sh = deployment\k8-proposed\scripts\deployToKubernetes.sh
+		deployment\k8-proposed\scripts\createRegistryCreds.sh = deployment\k8-proposed\scripts\createRegistryCreds.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,5 +171,10 @@ Global
 		{8012C168-DE1C-4A36-81F7-1E04BA07BA74} = {59ACEA99-126A-41E4-AD66-CCA191182E28}
 		{3BD5C515-5317-497E-ABD7-8D1A9A9D170D} = {59ACEA99-126A-41E4-AD66-CCA191182E28}
 		{D6FAD910-CFC6-4F36-B4E1-A133587CAEDE} = {F874FB0B-60AE-4940-A1AD-C06E02D8F6AC}
+		{8B54AC09-93CA-4065-ADA7-AD9C4AEF5793} = {694EF686-4796-4236-83BC-EECAA01BDACF}
+		{FD6CE9E1-C69D-4A59-8258-E0AB0166D10B} = {8B54AC09-93CA-4065-ADA7-AD9C4AEF5793}
+		{72EC3DFC-A5D1-4C7E-B66C-66E445776F61} = {8B54AC09-93CA-4065-ADA7-AD9C4AEF5793}
+		{2DE12D81-2F41-49EC-9D25-97605A8695AA} = {8B54AC09-93CA-4065-ADA7-AD9C4AEF5793}
+		{B1BA9011-BA07-49E1-A3B3-2667CDEB0D64} = {694EF686-4796-4236-83BC-EECAA01BDACF}
 	EndGlobalSection
 EndGlobal

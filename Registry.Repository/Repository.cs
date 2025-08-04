@@ -129,5 +129,31 @@ namespace Registry.Repository
         {
             return await facility.Find(s => true).Limit(numberOfRecords).ToListAsync(cancellationToken: cancellationToken);
         }
+        
+        public async Task CreateManyFacilities(List<Facility> facilities, CancellationToken cancellationToken = default)
+        {
+            var bulkOps = facilities.Select(city =>
+            {
+                var filter = Builders<Facility>.Filter.Eq(c => c.Id, city.Id);
+                var update = Builders<Facility>.Update
+                    .Set(c => c.Title, city.Title)
+                    .Set(c => c.Status, city.Status);
+                return new UpdateOneModel<Facility>(filter, update) { IsUpsert = true };
+            }).ToList();
+            
+            try
+            {
+                await facility.BulkWriteAsync(bulkOps, cancellationToken: cancellationToken);
+            }
+            catch (MongoBulkWriteException<City> ex)
+            {
+                foreach (var writeError in ex.WriteErrors)
+                {
+                    logger.LogError($"Error: {writeError.Message}");
+                }
+            }
+        }
+        
+        
     }
 }
